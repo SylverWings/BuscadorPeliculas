@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const taskController = require("../contrellers/TaskController");
-const isSuperAdmin = require('../middlewares/isSuperAdmin');
+const isBoss = require('../middlewares/isBoss');
 const verifyToken = require('../middlewares/verifyToken');
 
 router.get("/tasks", verifyToken, taskController.getAll);

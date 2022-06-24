@@ -1,9 +1,7 @@
-// const jwt = require("jsonwebtoken");
-
-const isSuperAdmin = (req, res, next) => {
+const isAdmin = (req, res, next) => {
     try {
         
-        if(req.user_role !== "super_admin"){
+        if(req.user_role !== "admin"){
             return res.status(401).json({
                 success: false,
                 message: "Don't have User permition"
@@ -20,4 +18,4 @@ const isSuperAdmin = (req, res, next) => {
     }
 };
 
-module.exports = isSuperAdmin;
+module.exports = isAdmin;
