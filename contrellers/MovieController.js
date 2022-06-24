@@ -1,101 +1,95 @@
-const Task = require("../models/Task");
-const taskController = {};
+const Movie = require("../models/Movie");
+const movieController = {};
 
-taskController.getAll = async (req, res) => {
+movieController.getAll = async (req, res) => {
 
     try {
         const userId = req.user_id;
-        const tasks = await Task.find({userId}).populate("userId", ["-password"]);
+        const movies = await Movie.find({userId}).populate("userId", ["-password"]);
 
-        if(tasks.length === 0){
+        if(movies.length === 0){
             return res.status(200).json({
                 success: true,
-                message: "You don't have already tasks"
+                message: "You don't have already movies"
             })
         }
 
         return res.status(200).json({
             success: true,
-            message: 'Get all tasks retrivered successfully',
-            data: tasks
+            message: 'Get all movies retrivered successfully',
+            data: movies
         })
 
     } catch (error) {
         return res.status(500).json({
             success: false,
-            message: 'Error retriving tasks: ',
+            message: 'Error retriving movies: ',
             error: error.message
         })
     }
 };
 
-taskController.getById = async (req, res) => {
+movieController.getById = async (req, res) => {
 
     try {
-        const taskId = req.params.id;
+        const movieId = req.params.id;
         const userId = req.user_id;
-        console.log(taskId);
+        console.log(movieId);
         console.log(userId);
-        const tasks = await Task.findOne({_id: taskId, userId: userId})
-
-        // if(tasks.length === 0){
-        //     return res.status(200).json({
-        //         success: true,
-        //         message: "You don't have already tasks"
-        //     })
-        // }
+        const movies = await Movie.findOne({_id: movieId, userId: userId})
 
         return res.status(200).json({
             success: true,
-            message: 'Get all tasks retrivered successfully',
-            data: tasks
+            message: 'Get all movies retrivered successfully',
+            data: movies
         })
 
     } catch (error) {
         return res.status(500).json({
             success: false,
-            message: 'Error retriving tasks: ',
+            message: 'Error retriving movies: ',
             error: error.message
         })
     }
 };
 
-taskController.create = async(req, res) =>{
+movieController.create = async(req, res) =>{
     try {
-        const {name, duration} = req.body;
+        const {title, genre} = req.body;
         const userId = req.user_id;
 
-        if(!name || !duration){
+        if(!title || !genre){
             return res.status(400).json({
                 success: false,
-                message: "Name and duration are required"
+                message: "Name and genre are required"
             })
         };
         
-        const newTask = {
-            name,            
-            duration,
-            userId: req.user_id
+        const newMovie = {
+            title,
+            rentedTo,            
+            genre,
+            actors,
         };
 
-        await Task.create(newTask);     
+        await Movie.create(newMovie);     
 
         return res.status(200).json({
             success: true,
-            message: "New task created",
-            newTask: newTask
+            message: "New movie created",
+            newMovie: newMovie
         })
 
     } catch (error) {
 
         return res.status(500).json({
             success: false,
-            message: "Task creation failed"
+            message: "Movie creation failed"
         })
     }
 }
 
-taskController.update = async(req, res) => {
+movieController.update = async(req, res) => {
     try{
         const filter = {
             _id: req.params.id,
@@ -103,28 +97,28 @@ taskController.update = async(req, res) => {
         };
         
         const update = {
-            name: req.body.name, 
+            title: req.body.title, 
             status: req.body.status            
-            // duration: req.body.duration,           
+            // genre: req.body.genre,           
         };
-        // if(req.body.name === "" || req.body.name == null){
+        // if(req.body.title === "" || req.body.title == null){
         //     return res.status(400).json({
         //         success: false,
-        //         message: "Campo name es obligatorio",                
+        //         message: "Campo title es obligatorio",                
         //     })
         // }
                     
-        const taskUpdated = await Task.findOneAndUpdate(filter, update, {new: true});   
+        const taskUpdated = await Movie.findOneAndUpdate(filter, update, {new: true});   
         if(!taskUpdated){
             return res.status(200).json({
                 success: true,
-                message: "Task doesn't exists"
+                message: "Movie doesn't exists"
             })
         }
 
         return res.status(200).json({
             success: true,
-            message: "Task update success",
+            message: "Movie update success",
             data: taskUpdated
         });    
     }catch (error){        
@@ -136,14 +130,14 @@ taskController.update = async(req, res) => {
     }
 };
 
-taskController.delete = async(req, res)=>{
+movieController.delete = async(req, res)=>{
     try{
         const filter = {
             _id: req.params._id,
             userId: req.user_id
         };
         
-        const taskDeleted = await Task.findOneAndDelete(filter);
+        const taskDeleted = await Movie.findOneAndDelete(filter);
 
         return res.status(200).json({
             success: true,
@@ -160,4 +154,4 @@ taskController.delete = async(req, res)=>{
 
 }
 
-module.exports = taskController;
+module.exports = movieController;

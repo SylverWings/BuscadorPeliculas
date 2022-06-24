@@ -2,17 +2,19 @@ const mongoose = require("mongoose");
 
 const MovieSchema = new mongoose.Schema({
 
-    Title: {
+    title: {
         type: String,
         require: true
     },    
     rentedTo: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true
+        ref: "User"        
     },
     genre:String,
-    actors: [{type: String}]
+    actors: [{
+        type: String,
+        default: null
+    }]
     // ageRange: {
     //     type: Number,
     //     required: true
