@@ -3,9 +3,9 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 
-const authController = {};
+const profileController = {};
 
-authController.register = async (req, res) => {
+profileController.register = async (req, res) => {
     try {
         const {name, email, password} = req.body;
 
@@ -41,7 +41,7 @@ authController.register = async (req, res) => {
     }
 };
 
-authController.login = async(req, res) =>{
+profileController.login = async(req, res) =>{
     try {
         const {email, password} = req.body;
 
@@ -87,7 +87,7 @@ authController.login = async(req, res) =>{
     }
 };
 
-authController.profile = async(req, res) =>{
+profileController.getAll = async(req, res) =>{
     try {
         const userId = req.user_id;
         const user = await User.findOne({_id: userId});
@@ -106,4 +106,4 @@ authController.profile = async(req, res) =>{
     }
 }
 
-module.exports = authController;
+module.exports = profileController;
