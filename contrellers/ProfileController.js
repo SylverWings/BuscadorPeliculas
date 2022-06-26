@@ -44,16 +44,15 @@ profileController.register = async (req, res) => {
 profileController.login = async(req, res) =>{
     try {
         const {email, password} = req.body;
-
         if(!email || !password){
             return res.status(400).json({
                 success: false,
                 message: "Email and password are required"
             })
         };
-
+        
         const user = await User.findOne({email: email});
-
+        
         if(!user){
             return res.status(400).json({
                 success: false,
@@ -62,14 +61,14 @@ profileController.login = async(req, res) =>{
         };
         
         const isValidPassword = bcrypt.compareSync(password, user.password);
-
+        
         if(!isValidPassword){
             return res.status(401).json({
                 success: false,
                 message: "Bad Credentials"
             })
         };
-
+                
         const token = jwt.sign({user_id: user._id, user_role: user.role}, process.env.JWT_SECRET, {expiresIn: "5h"})
 
         return res.status(200).json({

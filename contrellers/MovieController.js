@@ -66,8 +66,7 @@ movieController.create = async(req, res) =>{
         };
         
         const newMovie = {
-            title,
-            rentedTo,            
+            title,                        
             genre,
             actors,
         };
