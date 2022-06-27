@@ -6,8 +6,7 @@ const isAdmin = require("../middlewares/isAdmin")
 const isBoss = require('../middlewares/isBoss');
 
 
-router.get("./profile/profile", verifyToken, isAdmin, profileController.getAll);
-router.get("./profile/profile", verifyToken, isBoss, profileController.getAll);
+router.get("./profile/users", verifyToken, isBoss, profileController.getAll);
 router.post("/profile/register", profileController.register);
 router.post("/profile/login", profileController.login);
 router.delete("/users/:id", verifyToken, userController.delete);
