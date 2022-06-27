@@ -18,6 +18,9 @@ const OrderSchema = new mongoose.Schema({
         type: Date,
         default: newDate.setDate(newDate.getDate() + 7)
     },
+    returnLimit: {
+        type: Boolean,
+    }
 },  {
     timestamps: true
     }

@@ -6,12 +6,16 @@ const orderController = {};
 orderController.create = async(req, res) =>{
     try {
         const {title} = req.body;
-        const userId = req.user_id;
         
         if(!title){
             return res.status(400).json({
                 success: false,
                 message: "Movie are required"
+            })
+        }else if(await Order.findOne({userId: req.user_id})){
+            return res.status(400).json({
+                success: false,
+                message: "The client has already rented a movie"
             })
         };
         
@@ -19,7 +23,6 @@ orderController.create = async(req, res) =>{
             userId: req.user_id,
             title: title,                              
         };
-        
         
         await Order.create(newOrder);     
 
