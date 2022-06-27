@@ -12,9 +12,14 @@ const OrderSchema = new mongoose.Schema({
         ref: "Movie",
         required: true
     },
-    rentalDate: String,
-    returnDate: String,
-    //city:[{type: String}]
+    rentalDate: {
+        type: date,
+        default: new Date()
+    },
+    returnDate: {
+        type: date,
+        default: rentalDate.getMonth() + 1
+    },
 },  {
     timestamps: true
     }

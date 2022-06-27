@@ -29,6 +29,34 @@ movieController.getAll = async (req, res) => {
     }
 };
 
+movieController.getByTitle = async (req, res) => {
+
+    try {
+        const movieTitle = req.title;
+        const movies = await Movie.find({movieTitle}).populate("title");
+
+        if(movies.length === 0){
+            return res.status(200).json({
+                success: true,
+                message: "The movie youre looking for doesn't exist"
+            })
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: 'The movie has been found',
+            data: movies
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: 'Error retriving the movie: ',
+            error: error.message
+        })
+    }
+};
+
 movieController.getById = async (req, res) => {
 
     try {
