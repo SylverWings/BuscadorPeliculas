@@ -85,6 +85,34 @@ movieController.getByGenre = async (req, res) => {
     }
 };
 
+movieController.getByActors = async (req, res) => {
+
+    try {
+        const actors = req.params.actors;
+        const movies = await Movie.actors.filter({actors});
+
+        if(movies.length === 0){
+            return res.status(200).json({
+                success: true,
+                message: "There aren't movies with this actor"
+            })
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: 'Here are the movies with this actor',
+            data: movies
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: `Error retriving the movies with: ${actors}` ,
+            error: error.message
+        })
+    }
+};
+
 movieController.getById = async (req, res) => {
 
     try {
