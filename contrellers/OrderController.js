@@ -5,10 +5,10 @@ const orderController = {};
 
 orderController.create = async(req, res) =>{
     try {
-        const {movieTitle} = req.body;
+        const {title} = req.body;
         const userId = req.user_id;
-
-        if(!movie){
+        
+        if(!title){
             return res.status(400).json({
                 success: false,
                 message: "Movie are required"
@@ -16,10 +16,11 @@ orderController.create = async(req, res) =>{
         };
         
         const newOrder = {
-            userId,
-            movieTitle                       
+            userId: req.user_id,
+            title: title,                              
         };
-
+        
+        
         await Order.create(newOrder);     
 
         return res.status(200).json({
@@ -29,7 +30,6 @@ orderController.create = async(req, res) =>{
         })
 
     } catch (error) {
-
         return res.status(500).json({
             success: false,
             message: "Order creation failed"
