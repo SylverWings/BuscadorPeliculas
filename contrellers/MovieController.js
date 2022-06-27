@@ -171,47 +171,6 @@ movieController.create = async(req, res) =>{
             message: "Movie creation failed"
         })
     }
-}
-
-movieController.update = async(req, res) => {
-    try{
-        const filter = {
-            _id: req.params.id,
-            userId: req.user_id
-        };
-        
-        const update = {
-            title: req.body.title, 
-            status: req.body.status            
-            // genre: req.body.genre,           
-        };
-        // if(req.body.title === "" || req.body.title == null){
-        //     return res.status(400).json({
-        //         success: false,
-        //         message: "Campo title es obligatorio",                
-        //     })
-        // }
-                    
-        const taskUpdated = await Movie.findOneAndUpdate(filter, update, {new: true});   
-        if(!taskUpdated){
-            return res.status(200).json({
-                success: true,
-                message: "Movie doesn't exists"
-            })
-        }
-
-        return res.status(200).json({
-            success: true,
-            message: "Movie update success",
-            data: taskUpdated
-        });    
-    }catch (error){        
-        return res.status(500).json({
-            success: false,
-            message: "Error detected",
-            error: error?.message || error
-        })
-    }
 };
 
 movieController.delete = async(req, res)=>{
