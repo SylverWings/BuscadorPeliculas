@@ -57,6 +57,34 @@ movieController.getByTitle = async (req, res) => {
     }
 };
 
+movieController.getByGenre = async (req, res) => {
+
+    try {
+        const movieGenre = req.params.genre;
+        const movies = await Movie.find({movieGenre});
+
+        if(movies.length === 0){
+            return res.status(200).json({
+                success: true,
+                message: "There aren't movies with this Genre"
+            })
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: 'Here are the list of the genre movies',
+            data: movies
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: 'Error retriving the movies by genre: ',
+            error: error.message
+        })
+    }
+};
+
 movieController.getById = async (req, res) => {
 
     try {
