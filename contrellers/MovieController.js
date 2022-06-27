@@ -55,9 +55,10 @@ movieController.getById = async (req, res) => {
 
 movieController.create = async(req, res) =>{
     try {
-        const {title, genre} = req.body;
+        const {title, genre, actors} = req.body;
         const userId = req.user_id;
 
+        
         if(!title || !genre){
             return res.status(400).json({
                 success: false,
@@ -65,12 +66,16 @@ movieController.create = async(req, res) =>{
             })
         };
         
+        
         const newMovie = {
             title,                        
             genre,
             actors,
+            userId: req.user_id
         };
-
+        
+        console.log()
+        
         await Movie.create(newMovie);     
 
         return res.status(200).json({

@@ -14,7 +14,12 @@ const MovieSchema = new mongoose.Schema({
     actors: [{
         type: String,
         default: null
-    }]
+    }],
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true
+    },
     // ageRange: {
     //     type: Number,
     //     required: true
