@@ -2,7 +2,8 @@ const express = require("express");
 const db = require("./config/database");
 const User = require("./models/User");
 const userRoutes = require('./routes/user.routes');
-const movieRoutes = require("./routes/movie.routes")
+const movieRoutes = require("./routes/movie.routes");
+const orderRoutes = require("./routes/order.routes")
 require("dotenv").config();
 
 const app = express();
@@ -22,6 +23,7 @@ const port = process.env.PORT || 4000;
 //routes
 app.use("/api", userRoutes);
 app.use("/api", movieRoutes);
+app.use("/api", orderRoutes)
 
 
 
