@@ -23,7 +23,7 @@ const port = process.env.PORT || 4000;
 //routes
 app.use("/api", userRoutes);
 app.use("/api", movieRoutes);
-app.use("/api", orderRoutes)
+app.use("/api", orderRoutes);
 
 
 

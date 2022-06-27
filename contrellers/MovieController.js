@@ -5,7 +5,7 @@ movieController.getAll = async (req, res) => {
 
     try {
         const userId = req.user_id;
-        const movies = await Movie.find({userId}).populate("userId", ["-password"]);
+        const movies = await Movie.find();
 
         if(movies.length === 0){
             return res.status(200).json({
@@ -112,8 +112,7 @@ movieController.getById = async (req, res) => {
 movieController.create = async(req, res) =>{
     try {
         const {title, genre, actors} = req.body;
-        const userId = req.user_id;
-
+        
         
         if(!title || !genre){
             return res.status(400).json({
@@ -126,12 +125,9 @@ movieController.create = async(req, res) =>{
         const newMovie = {
             title,                        
             genre,
-            actors,
-            userId: req.user_id
+            actors            
         };
-        
-        console.log()
-        
+                
         await Movie.create(newMovie);     
 
         return res.status(200).json({

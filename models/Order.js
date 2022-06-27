@@ -1,24 +1,22 @@
 const mongoose = require("mongoose");
-
+let newDate = new Date();
 const OrderSchema = new mongoose.Schema({
 
     userId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true
+        ref: "User"        
     },    
-    movieTitle: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Movie",
+    title: {
+        type: String,
         required: true
     },
     rentalDate: {
-        type: date,
+        type: Date,
         default: new Date()
     },
     returnDate: {
-        type: date,
-        default: rentalDate.getMonth() + 1
+        type: Date,
+        default: newDate.setDate(newDate.getDate() + 7)
     },
 },  {
     timestamps: true
