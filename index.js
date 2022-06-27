@@ -7,15 +7,23 @@ require("dotenv").config();
 
 const app = express();
 app.use(express.json());
+
+//middlewares
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+    next();
+});
+
 const port = process.env.PORT || 4000;
 
 //routes
 app.use("/api", userRoutes);
 app.use("/api", movieRoutes);
 
-app.get("/", (req, res)=>{
-    return res.send("Bienvenidos a mi aplicacion de tareas")
-});
+
 
 app.get("*", (req, res)=>{
     return res.status(404).send("404 route not found")
