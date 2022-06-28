@@ -20,45 +20,10 @@ userController.getAll = async (req, res) => {
     }
 };
 
-// userController.update = async(req, res) => {
-//     try{
-//         const filter = {_id: req.params.id};
-
-//         if(req.body.name === "" || req.body.name == null){
-//             return res.status(400).json({
-//                 success: false,
-//                 message: "Campo name es obligatorio",                
-//             })
-//         }
-        
-//         const update = {
-//             name: req.body.name, 
-//             // email: req.body.email, 
-//             // password: req.body.password
-//         };
-
-//         const userUpdated = await User.findOneAndUpdate(filter, update, {new: true});
-//         // const userUpdated = await User.findOne(filter);
-
-//         return res.status(200).json({
-//             success: true,
-//             message: "User update success",
-//             data: userUpdated
-//         });    
-//     }catch (error){
-//         console.log(error);
-//         return res.status(500).json({
-//             success: false,
-//             message: "Error detected",
-//             data: error?.message || error
-//         })
-//     }
-// };
-
 userController.delete = async(req, res)=>{
     try{
-        const id = req.params._id;
-        const userDeleted = await User.deleteOne(id);
+        const id = req.user_id;
+        const userDeleted = await User.findOneAndDelete(id);
         return res.status(200).json({
             success: true,
             message: "Delete user successfully",

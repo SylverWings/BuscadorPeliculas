@@ -12,18 +12,11 @@ const UserSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true,
-        // minLength: 6,
-        // maxLength: 10
-    },
-    // age: {
-    //     type: Number,
-    //     required: true,
-    //     default: 18
-    // },
+        required: true
+    },    
     role: {
         type: String,
-        enum: ['client', 'admin', 'boss'],
+        enum: ['client', 'boss'],
         default: 'client'
     }    
 },  {
