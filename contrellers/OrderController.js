@@ -17,6 +17,12 @@ orderController.create = async(req, res) =>{
                 success: false,
                 message: "The client has already rented a movie"
             })
+        }else if(await Order.findOne({title: title}).rentalDate.valueOf() < new Date().valueOf()){
+
+                return res.status(400).json({
+                    success: false,
+                    message: "The movie its already rented to other user"
+                })
         };
         
         const newOrder = {
@@ -25,7 +31,7 @@ orderController.create = async(req, res) =>{
         };
         
         await Order.create(newOrder);     
-
+        
         return res.status(200).json({
             success: true,
             message: "New order created",
@@ -67,5 +73,8 @@ orderController.getAll = async (req, res) => {
     }
 };
 
+orderController.updateDates = async (req, res) => {
+    
+}
 
 module.exports = orderController;
