@@ -28,7 +28,8 @@ app.use("/api", orderRoutes);
 
 
 app.get("*", (req, res)=>{
-    return res.send("Bienvenidos a nuestra API");
+    return res.status(404).send("Bienvenidos a nuestra API")
+});
 
 db()
     .then (()=> {
