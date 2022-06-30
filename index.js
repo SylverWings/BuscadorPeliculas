@@ -27,9 +27,8 @@ app.use("/api", orderRoutes);
 
 
 
-// app.get("*", (req, res)=>{
-//     return res.status(404).send("404 route not found")
-// });
+app.get("*", (req, res)=>{
+    return res.send("Bienvenidos a nuestra API");
 
 db()
     .then (()=> {
