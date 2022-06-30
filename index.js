@@ -27,8 +27,12 @@ app.use("/api", orderRoutes);
 
 
 
+app.get("/", (req, res)=>{
+    return res.send("Bienvenidos a la mejor API de este lado del Mississippi, creada por Ivan y Lionel")
+});
+
 app.get("*", (req, res)=>{
-    return res.status(404).send("Bienvenidos a la mejor API de este lado del Mississippi, creada por Ivan y Lionel")
+    return res.status(404).send("404 route not found")
 });
 
 db()
