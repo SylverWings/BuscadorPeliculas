@@ -28,7 +28,7 @@ app.use("/api", orderRoutes);
 
 
 app.get("*", (req, res)=>{
-    return res.status(404).send("Bienvenidos a nuestra API")
+    return res.status(404).send("Bienvenidos a la mejor API de este lado del Mississippi, creada por Ivan y Lionel")
 });
 
 db()
