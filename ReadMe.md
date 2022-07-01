@@ -114,7 +114,7 @@ base de datos, que ya estaba vinculada a Mongo Atlas.
 
 ---
 
-<h4>Herramientas</h4> 🛠️
+<h4>Herramientas 🛠️</h4>
 
 ---
 
@@ -126,7 +126,7 @@ base de datos, que ya estaba vinculada a Mongo Atlas.
 
 ---
 
-<h4>Diseño y Producido</h4> ✒️
+<h4>Diseño y Producido ✒️</h4>
 
 ---
 
