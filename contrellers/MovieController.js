@@ -118,8 +118,7 @@ movieController.getById = async (req, res) => {
     try {
         const movieId = req.params.id;
         const userId = req.user_id;
-        console.log(movieId);
-        console.log(userId);
+        
         const movies = await Movie.findOne({_id: movieId, userId: userId})
 
         return res.status(200).json({
@@ -180,12 +179,12 @@ movieController.delete = async(req, res)=>{
             userId: req.user_id
         };
         
-        const taskDeleted = await Movie.findOneAndDelete(filter);
+        const movieDeleted = await Movie.findOneAndDelete(filter);
 
         return res.status(200).json({
             success: true,
-            message: "Delete task successfully",
-            data: taskDeleted
+            message: "Delete movie successfully",
+            data: movieDeleted
             })
     }catch (error){
         return res.status(500).json({

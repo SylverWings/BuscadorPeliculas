@@ -73,8 +73,51 @@ orderController.getAll = async (req, res) => {
     }
 };
 
-orderController.updateDates = async (req, res) => {
+orderController.getById = async (req, res) => {
     
+    try {
+
+        const id = req.params.id;
+                
+        const orders = await Order.findOne({id: id})
+
+        return res.status(200).json({
+            success: true,
+            message: 'Order retrivered successfully',
+            data: orders
+        })
+        
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: 'Error retriving order',
+            error: error.message
+        })        
+    }
+};
+
+orderController.delete = async(req, res)=>{
+    try{
+        const filter = {
+            _id: req.body._id,
+            userId: req.user_id
+        };
+        
+        const orderDeleted = await Order.findOneAndDelete(filter);
+
+        return res.status(200).json({
+            success: true,
+            message: "Delete order successfully",
+            data: orderDeleted
+            })
+    }catch (error){
+        return res.status(500).json({
+            success: false,
+            message: "Error detected",
+            data: error?.message || error
+        })
+    }
+
 }
 
 module.exports = orderController;

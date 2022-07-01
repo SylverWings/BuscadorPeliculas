@@ -51,10 +51,6 @@ base de datos, que ya estaba vinculada a Mongo Atlas.
 
 <br>
 
-* "/api/
-
-<br>
-
 * "/api/users/profile" con este Endpoint veríamos la informacion de usuarios (Solo "boss")
 
 <br>
@@ -123,7 +119,9 @@ base de datos, que ya estaba vinculada a Mongo Atlas.
 ---
 
 - JavaScript
+
 - MongoDB
+
 - Heroku
 
 ---
