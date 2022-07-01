@@ -12,7 +12,7 @@ Lo primero que hicimos fue juntarnos y crear en Trello las tablas y las diferent
 proceso a seguir, nos fuimos repartiendo las diferentes tareas.
 
 _Foto de Ejemplo_
-<img class= "foto" src="./trello.jpg" alt="trello">
+<img class="foto" src="./trello.jpg" alt="trello">
 
 Una vez acabamos todo el trabajo, repasamos que los controladores y las rutas esten bien. A continuacion, deployamos en Heroku la 
 base de datos, que ya estaba vinculada a Mongo Atlas.
