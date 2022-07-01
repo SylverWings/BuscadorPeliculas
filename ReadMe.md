@@ -5,13 +5,13 @@ elegimos como gestion de datos MongoDB.
 
 
 ---
-# Trabajo Realizado
+## Trabajo Realizado 🔧
 ---
 
 Lo primero que hicimos fue juntarnos y crear en Trello las tablas y las diferentes tareas a realizar. Una vez tuvimos claro el
 proceso a seguir, nos fuimos repartiendo las diferentes tareas.
 
-Foto de Ejemplo
+_Foto de Ejemplo_
 <img class= "foto" src="./trello.jpg" alt="trello">
 
 Una vez acabamos todo el trabajo, repasamos que los controladores y las rutas esten bien. A continuacion, deployamos en Heroku la 
@@ -19,7 +19,7 @@ base de datos, que ya estaba vinculada a Mongo Atlas.
 
 ---
 
-# Deploy en Heroku 
+## Deploy en Heroku 
 ---
 
 [Link del proyecto en heroku](https://proyecto-bucador-peliculas.herokuapp.com/) 🌎
@@ -27,7 +27,7 @@ base de datos, que ya estaba vinculada a Mongo Atlas.
 
 ---
 
-# Instrucciones y endpoints
+## Instrucciones y endpoints
 
 ---
 
@@ -41,7 +41,7 @@ base de datos, que ya estaba vinculada a Mongo Atlas.
 
 ---
 
-<h2>Usuarios</h2>
+<h4>Usuarios</h4>
 
 * "/api/register" para registrarnos como usurarios.
 
@@ -55,28 +55,83 @@ base de datos, que ya estaba vinculada a Mongo Atlas.
 
 <br>
 
-* /Reservas/(numero de id) para buscar una reserva a través de su id.
+* "/api/users/profile" con este Endpoint veríamos la informacion de usuarios (Solo "boss")
 
 <br>
 
-* /Reservas/cliente/(NombreCliente) para buscar tantas reservas como haya hecho el nombre del cliente si existiera. 
+* "/api/deleteUser" los mismos usuarios pueden darse de baja
+
+---
+
+<h4>Películas</h4>
+
+---
+
+
+* "/api/movies" para buscar todas las peliculas
 
 <br>
 
-* /Reservas/telefono/(numerotelefono) para buscar reservas filtrándolas por número de teléfono.
+* "/api/movies/:id" para buscar una pelicula a través de su id.
 
 <br>
 
-* /Reservas/email/(email) para buscar reservas filtrándolas por el email de la reserva.
+* "/api/movies/title/:title" para buscar una pelicula a traves de su titulo
 
 <br>
 
-* /Reservas/hotel/(nombreHotel) para buscar reservas filtrando por el nombre del hotel.
+* "/api/movies/genre/:genre" para buscar las películas a traves del género
 
 <br>
 
-* /Reservas/FechaE/(Fecha de entrada) para buscar reservas filtrando por la fecha de entrada de la reserva.
+* "/api/movies/actors/:actors" para buscar las películas por medio de los actores
 
 <br>
 
-* /Reservas/FechaS/(Fecha de Salida) para buscar reservas filtrando por la fecha de salida de la reserva.
+* "/api/movies/create" este Endpoint solo lo puede usar el "boss", y se utiliza para crear una  película
+
+<br>
+
+* "/api/movies/delete/:id" este Endpoint solo lo puede usar el "boss", y se utiliza para eliminar una  película
+
+<br>
+
+---
+
+<h4>Pedidos</h4>
+
+---
+
+* "/api/orders/create" en este Endpoint, solo los usuarios registrados, pueden hacer un pedido
+
+<br>
+
+* "/api/orders" donde solo el "boss" puede buscar los pedidos
+
+<br>
+
+* "/api/orders/:id" donde solo el "boss" puede buscar los pedidos por su id
+
+<br>
+
+* "/api/orders/delete" en este Endpoint, solo los usuarios registrados, pueden eliminar su pedido
+
+---
+
+<h4>Herramientas</h4> 🛠️
+
+---
+
+- JavaScript
+- MongoDB
+- Heroku
+
+---
+
+<h4>Diseño y Producido</h4> ✒️
+
+---
+
+Iván Bara Lorenzo
+
+Lionel M. Garcia Bustos
