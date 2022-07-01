@@ -3,12 +3,12 @@ const movieController = require("../contrellers/MovieController");
 const isBoss = require('../middlewares/isBoss');
 const verifyToken = require('../middlewares/verifyToken');
 
-router.get("/movie", verifyToken, movieController.getAll);
-router.get("/movie/:id", verifyToken, movieController.getById);
-router.get("/movie/title/:title", verifyToken, movieController.getByTitle);
-router.get("/movie/genre/:genre", verifyToken, movieController.getByGenre);
-router.get("/movie/actors/:actors", verifyToken, movieController.getByActors);
-router.post("/movie", verifyToken, isBoss, movieController.create);
-router.delete("/movie/:id", verifyToken, isBoss, movieController.delete);
+router.get("/movies", verifyToken, movieController.getAll);
+router.get("/movies/:id", verifyToken, movieController.getById);
+router.get("/movies/title/:title", verifyToken, movieController.getByTitle);
+router.get("/movies/genre/:genre", verifyToken, movieController.getByGenre);
+router.get("/movies/actors/:actors", verifyToken, movieController.getByActors);
+router.post("/movies", verifyToken, isBoss, movieController.create);
+router.delete("/movie/delete", verifyToken, isBoss, movieController.delete);
 
 module.exports = router;
