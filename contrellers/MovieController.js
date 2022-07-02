@@ -88,7 +88,7 @@ movieController.getByGenre = async (req, res) => {
 movieController.getByActors = async (req, res) => {
 
     try {
-        const actors = req.params.actors;
+        const actors = req.body.actors;
         const movies = await Movie.actors.filter({actors});
 
         if(movies.length === 0){
