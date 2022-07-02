@@ -32,7 +32,7 @@ movieController.getAll = async (req, res) => {
 movieController.getByTitle = async (req, res) => {
 
     try {
-        const movieTitle = req.title;
+        const movieTitle = req.params.title;
         const movies = await Movie.find({movieTitle}).populate("title");
 
         if(movies.length === 0){
