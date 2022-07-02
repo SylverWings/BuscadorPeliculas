@@ -33,7 +33,7 @@ movieController.getByTitle = async (req, res) => {
 
     try {
         const movieTitle = req.params.title;
-        const movies = await Movie.find({movieTitle}).populate("title");
+        const movies = await Movie.findOne({movieTitle}).populate("title");
 
         if(movies.length === 0){
             return res.status(200).json({
