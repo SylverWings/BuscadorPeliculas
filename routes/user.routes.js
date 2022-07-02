@@ -7,7 +7,7 @@ const isBoss = require('../middlewares/isBoss');
 
 router.post("/register", profileController.register);
 router.post("/login", profileController.login);
-router.get("/users/profile", verifyToken, isBoss, profileController.getUser);
+router.get("/users/profile", verifyToken, profileController.getUser);
 router.delete("/deleteUser", verifyToken, userController.delete);
 
 module.exports = router;
