@@ -88,7 +88,7 @@ base de datos, que ya estaba vinculada a Mongo Atlas.
 
 <br>
 
-* "/api/movies/delete" este Endpoint solo lo puede usar el "boss", y se utiliza para eliminar una  película
+* "/api/movies/delete/:id" este Endpoint solo lo puede usar el "boss", y se utiliza para eliminar una  película
 
 <br>
 
