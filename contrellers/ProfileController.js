@@ -86,15 +86,16 @@ profileController.login = async(req, res) =>{
     }
 };
 
-profileController.getAll = async(req, res) =>{
+profileController.getUser = async(req, res) =>{
     try {
         const userId = req.user_id;
-        const user = await User.findOne({_id: userId});
+        const email = req.body.email
+        const findUser = await User.findOne({_id: userId, email: email});
 
         return res.status(200).json({
             success: true,
             message: "Profile finded",
-            data: user
+            data: findUser
         })
 
     } catch (error) {
