@@ -177,7 +177,7 @@ movieController.create = async(req, res) =>{
 movieController.delete = async(req, res)=>{
     try{
         const filter = {
-            _id: req.params._id,
+            id: req.params.id,
             userId: req.user_id
         };
         
