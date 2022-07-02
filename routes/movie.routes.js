@@ -8,7 +8,7 @@ router.get("/movies/:id", verifyToken, movieController.getById);
 router.get("/movies/title/:title", verifyToken, movieController.getByTitle);
 router.get("/movies/genre/:genre", verifyToken, movieController.getByGenre);
 router.get("/movies/actors/:actors", verifyToken, movieController.getByActors);
-router.post("/movies", verifyToken, isBoss, movieController.create);
+router.post("/movies/create", verifyToken, isBoss, movieController.create);
 router.delete("/movie/delete", verifyToken, isBoss, movieController.delete);
 
 module.exports = router;
