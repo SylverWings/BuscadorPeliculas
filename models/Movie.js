@@ -12,27 +12,27 @@ const MovieSchema = new mongoose.Schema({
     },
     genre:[{
         type: String,
-        default: null
+        require: false
     }],
     actors: [{
         type: String,
-        default: null
+        require: false
     }],
     year: {
         type: Number,
-        default: null
+        require: false
     },
     length: {
         type:String,
-        default: null
+        require: false
     },
     imgLink: {
         type: String,
-        default: null
+        require: false
     },
     sinopsis: {
         type: String,
-        default: null
+        require: false
     }
 },  {
     timestamps: true
