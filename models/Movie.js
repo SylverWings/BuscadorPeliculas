@@ -10,10 +10,10 @@ const MovieSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"        
     },
-    genre:{
+    genre:[{
         type: String,
         default: null
-    },
+    }],
     actors: [{
         type: String,
         default: null
