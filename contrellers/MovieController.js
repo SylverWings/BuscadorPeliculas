@@ -140,7 +140,7 @@ movieController.getById = async (req, res) => {
 
 movieController.create = async(req, res) =>{
     try {
-        const {title, genre, actors} = req.body;
+        const {title, genre, actors, year, length, imgLink, sinopsis} = req.body;
         
         
         if(!title || !genre){
@@ -154,7 +154,11 @@ movieController.create = async(req, res) =>{
         const newMovie = {
             title,                        
             genre,
-            actors            
+            actors,
+            year,
+            length,
+            imgLink,
+            sinopsis            
         };
                 
         await Movie.create(newMovie);     
