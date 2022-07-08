@@ -7,6 +7,11 @@ movieController.getAll = async (req, res) => {
         const userId = req.user_id;
         const movies = await Movie.find();
 
+
+        //En caso de que tuvieramos muchas pelicualas, usariamos 'limit' para acortar la cantidad de datos que queremos traer al Front-End
+        
+        // const movies = await Movie.find().limit(10);
+
         if(movies.length === 0){
             return res.status(200).json({
                 success: true,
