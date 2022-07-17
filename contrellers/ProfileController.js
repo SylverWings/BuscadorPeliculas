@@ -107,4 +107,23 @@ profileController.getUser = async(req, res) =>{
     }
 }
 
+profileController.getAllUser = async(req, res) =>{
+    try {
+               
+        const findAllUser = await User.findAll({include: [{models: User}]}).select(['-_id','-password']);
+
+        return res.status(200).json({
+            success: true,
+            message: "Profile finded",
+            data: findAllUser
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Profile can't login"
+        })
+    }
+}
+
 module.exports = profileController;
