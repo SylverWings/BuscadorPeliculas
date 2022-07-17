@@ -7,12 +7,12 @@ const profileController = {};
 
 profileController.register = async (req, res) => {
     try {
-        const {name, email, password} = req.body;
+        const {name, surname, email, password, phone} = req.body;
 
-        if(!name || !email || !password){
+        if(!name || !email || !password || !surname || !phone){
             return res.status(400).json({
                 success: false,
-                message: "Name, email, password are required"
+                message: "Name, surname, email, password and phone are required"
             })
         };        
         const salt = bcrypt.genSaltSync(10);
@@ -20,8 +20,10 @@ profileController.register = async (req, res) => {
         
         const newUser = {
             name, 
+            surname,
             email, 
-            password: encryptPassword
+            password: encryptPassword,
+            phone
         };
 
         await User.create(newUser);

@@ -32,7 +32,7 @@ const UserSchema = new mongoose.Schema({
     },
     birth:{
         type: Date,
-        required: true
+        default: null
     },
     role: {
         type: String,
