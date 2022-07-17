@@ -91,8 +91,8 @@ profileController.login = async(req, res) =>{
 profileController.getUser = async(req, res) =>{
     try {
         const userId = req.user_id;
-        const id = req.body._id
-        const findUser = await User.findById({id: userId, id: id}).select(['-_id','-password']);
+        const id = req.body.id
+        const findUser = await User.findOne({id: userId, _id: id}).select(['-_id','-password']);
 
         return res.status(200).json({
             success: true,
