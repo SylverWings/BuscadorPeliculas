@@ -109,8 +109,8 @@ profileController.getUser = async(req, res) =>{
 
 profileController.getAllUser = async(req, res) =>{
     try {
-        const userId = req.user_id;  
-        const findAllUser = await User.findAll({include: [{models: User}]}).select(['-_id','-password']);
+               const userId = req.user_id;  
+        const findAllUser = await User.find({include: [{models: User}]}).select(['-_id','-password']);
 
         return res.status(200).json({
             success: true,
