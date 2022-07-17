@@ -30,6 +30,10 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    birth:{
+        type: Date,
+        required: true
+    },
     role: {
         type: String,
         enum: ['client', 'boss'],
