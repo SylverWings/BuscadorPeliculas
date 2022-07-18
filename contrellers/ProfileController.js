@@ -7,7 +7,7 @@ const profileController = {};
 
 profileController.register = async (req, res) => {
     try {
-        const {name, surname, email, password, phone} = req.body;
+        const {name, surname, email, password, address, city, phone, birth} = req.body;
 
         if(!name || !email || !password || !surname || !phone){
             return res.status(400).json({
@@ -23,7 +23,10 @@ profileController.register = async (req, res) => {
             surname,
             email, 
             password: encryptPassword,
-            phone
+            address,
+            city,
+            phone,
+            birth
         };
 
         await User.create(newUser);
@@ -71,7 +74,18 @@ profileController.login = async(req, res) =>{
             })
         };
                 
-        const token = jwt.sign({user_id: user._id, user_role: user.role}, process.env.JWT_SECRET, {expiresIn: "5h"})
+        const token = jwt.sign({
+                                user_id: user._id, 
+                                user_role: user.role, 
+                                user_name: user.name,
+                                user_surname: user.surname,
+                                user_email: user.email,
+                                user_password: user.password,
+                                user_address: user.address,
+                                user_city: user.city,
+                                user_phone: user.phone,
+                                user_birth: user.birth
+                            }, process.env.JWT_SECRET, {expiresIn: "5h"})
 
         return res.status(200).json({
             success: true,
