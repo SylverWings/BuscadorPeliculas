@@ -99,6 +99,29 @@ orderController.getById = async (req, res) => {
     }
 };
 
+orderController.getByUser = async (req, res) => {
+    
+    try {
+        const userId = req.user_id;
+        const id = req.params.id;
+                
+        const orders = await Order.findById({_id: id, userId: userId})
+
+        return res.status(200).json({
+            success: true,
+            message: 'Order retrivered successfully',
+            data: orders
+        })
+        
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: 'Error retriving order',
+            error: error.message
+        })        
+    }
+};
+
 orderController.delete = async(req, res)=>{
     try{
         const filter = {
