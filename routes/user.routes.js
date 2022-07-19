@@ -5,9 +5,10 @@ const verifyToken = require('../middlewares/verifyToken');
 const isBoss = require('../middlewares/isBoss');
 
 
-router.get("/users/profile", verifyToken, isBoss, profileController.getAll);
 router.post("/register", profileController.register);
 router.post("/login", profileController.login);
+router.get("/users/profile", verifyToken, profileController.getUser);
+router.get("/users/allProfile", verifyToken, isBoss, profileController.getAllUser);
 router.delete("/deleteUser", verifyToken, userController.delete);
 
 module.exports = router;

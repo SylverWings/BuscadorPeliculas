@@ -7,6 +7,11 @@ movieController.getAll = async (req, res) => {
         const userId = req.user_id;
         const movies = await Movie.find();
 
+
+        //En caso de que tuvieramos muchas pelicualas, usariamos 'limit' para acortar la cantidad de datos que queremos traer al Front-End
+        
+        // const movies = await Movie.find().limit(10);
+
         if(movies.length === 0){
             return res.status(200).json({
                 success: true,
@@ -32,9 +37,9 @@ movieController.getAll = async (req, res) => {
 movieController.getByTitle = async (req, res) => {
 
     try {
-        const movieTitle = req.title;
-        const movies = await Movie.find({movieTitle}).populate("title");
-
+        const movieTitle = req.params.title;
+        const movies = await Movie.findOne({title: movieTitle});
+        
         if(movies.length === 0){
             return res.status(200).json({
                 success: true,
@@ -88,9 +93,11 @@ movieController.getByGenre = async (req, res) => {
 movieController.getByActors = async (req, res) => {
 
     try {
-        const actors = req.params.actors;
-        const movies = await Movie.actors.filter({actors});
 
+        const actors = req.params.actors;
+        const movies = await Movie.find({actors: actors});
+
+        
         if(movies.length === 0){
             return res.status(200).json({
                 success: true,
@@ -107,7 +114,7 @@ movieController.getByActors = async (req, res) => {
     } catch (error) {
         return res.status(500).json({
             success: false,
-            message: `Error retriving the movies with: ${actors}` ,
+            message: "Error retriving that actor in movies" ,
             error: error.message
         })
     }
@@ -118,8 +125,7 @@ movieController.getById = async (req, res) => {
     try {
         const movieId = req.params.id;
         const userId = req.user_id;
-        console.log(movieId);
-        console.log(userId);
+        
         const movies = await Movie.findOne({_id: movieId, userId: userId})
 
         return res.status(200).json({
@@ -139,7 +145,7 @@ movieController.getById = async (req, res) => {
 
 movieController.create = async(req, res) =>{
     try {
-        const {title, genre, actors} = req.body;
+        const {title, genre, actors, year, length, imgLink, sinopsis} = req.body;
         
         
         if(!title || !genre){
@@ -153,7 +159,11 @@ movieController.create = async(req, res) =>{
         const newMovie = {
             title,                        
             genre,
-            actors            
+            actors,
+            year,
+            length,
+            imgLink,
+            sinopsis            
         };
                 
         await Movie.create(newMovie);     
@@ -180,12 +190,12 @@ movieController.delete = async(req, res)=>{
             userId: req.user_id
         };
         
-        const taskDeleted = await Movie.findOneAndDelete(filter);
+        const movieDeleted = await Movie.findOneAndDelete(filter);
 
         return res.status(200).json({
             success: true,
-            message: "Delete task successfully",
-            data: taskDeleted
+            message: "Delete movie successfully",
+            data: movieDeleted
             })
     }catch (error){
         return res.status(500).json({

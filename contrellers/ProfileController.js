@@ -7,12 +7,12 @@ const profileController = {};
 
 profileController.register = async (req, res) => {
     try {
-        const {name, email, password} = req.body;
+        const {name, surname, email, password, phone} = req.body;
 
-        if(!name || !email || !password){
+        if(!name || !email || !password || !surname || !phone){
             return res.status(400).json({
                 success: false,
-                message: "Name, email, password are required"
+                message: "Name, surname, email, password and phone are required"
             })
         };        
         const salt = bcrypt.genSaltSync(10);
@@ -20,8 +20,10 @@ profileController.register = async (req, res) => {
         
         const newUser = {
             name, 
+            surname,
             email, 
-            password: encryptPassword
+            password: encryptPassword,
+            phone
         };
 
         await User.create(newUser);
@@ -86,15 +88,34 @@ profileController.login = async(req, res) =>{
     }
 };
 
-profileController.getAll = async(req, res) =>{
+profileController.getUser = async(req, res) =>{
     try {
-        const userId = req.user_id;
-        const user = await User.findOne({_id: userId});
+        const userId = req.user_id;        
+        const findUser = await User.findById({_id: userId}).select(['-_id','-password']);
 
         return res.status(200).json({
             success: true,
             message: "Profile finded",
-            data: user
+            data: findUser
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Profile can't login"
+        })
+    }
+}
+
+profileController.getAllUser = async(req, res) =>{
+    try {
+               const userId = req.user_id;  
+        const findAllUser = await User.find({include: [{models: User}]}).select(['-_id','-password']);
+
+        return res.status(200).json({
+            success: true,
+            message: "Profile finded",
+            data: findAllUser
         })
 
     } catch (error) {

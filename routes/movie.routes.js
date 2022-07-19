@@ -3,7 +3,7 @@ const movieController = require("../contrellers/MovieController");
 const isBoss = require('../middlewares/isBoss');
 const verifyToken = require('../middlewares/verifyToken');
 
-router.get("/movies", verifyToken, movieController.getAll);
+router.get("/movies", movieController.getAll);
 router.get("/movies/:id", verifyToken, movieController.getById);
 router.get("/movies/title/:title", verifyToken, movieController.getByTitle);
 router.get("/movies/genre/:genre", verifyToken, movieController.getByGenre);

@@ -5,8 +5,9 @@ const orderController = {};
 
 orderController.create = async(req, res) =>{
     try {
-        const {title} = req.body;
-        
+
+        const title = req.body.title;
+       
         if(!title){
             return res.status(400).json({
                 success: false,
@@ -17,18 +18,18 @@ orderController.create = async(req, res) =>{
                 success: false,
                 message: "The client has already rented a movie"
             })
-        }else if(await Order.findOne({title: title}).rentalDate.valueOf() < new Date().valueOf()){
-
-                return res.status(400).json({
-                    success: false,
-                    message: "The movie its already rented to other user"
-                })
+        }else if(await Order.findOne({title: title}).rentalDate?.valueOf() < new Date()?.valueOf()){
+            
+            return res.status(400).json({
+                success: false,
+                message: "The movie its already rented to other user"
+            })
         };
         
         const newOrder = {
             userId: req.user_id,
             title: title,                              
-        };
+        };    
         
         await Order.create(newOrder);     
         
@@ -36,12 +37,14 @@ orderController.create = async(req, res) =>{
             success: true,
             message: "New order created",
             newOrder: newOrder
-        })
+        });
+        
 
     } catch (error) {
         return res.status(500).json({
             success: false,
-            message: "Order creation failed"
+            message: "Order creation failed",
+            error: error?.message
         })
     }
 };
@@ -73,8 +76,51 @@ orderController.getAll = async (req, res) => {
     }
 };
 
-orderController.updateDates = async (req, res) => {
+orderController.getById = async (req, res) => {
     
+    try {
+
+        const id = req.params.id;
+                
+        const orders = await Order.findOne({id: id})
+
+        return res.status(200).json({
+            success: true,
+            message: 'Order retrivered successfully',
+            data: orders
+        })
+        
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: 'Error retriving order',
+            error: error.message
+        })        
+    }
+};
+
+orderController.delete = async(req, res)=>{
+    try{
+        const filter = {
+            _id: req.body._id,
+            userId: req.user_id
+        };
+        
+        const orderDeleted = await Order.findOneAndDelete(filter);
+
+        return res.status(200).json({
+            success: true,
+            message: "Delete order successfully",
+            data: orderDeleted
+            })
+    }catch (error){
+        return res.status(500).json({
+            success: false,
+            message: "Error detected",
+            data: error?.message || error
+        })
+    }
+
 }
 
 module.exports = orderController;

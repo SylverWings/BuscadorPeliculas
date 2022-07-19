@@ -5,21 +5,21 @@ elegimos como gestion de datos MongoDB.
 
 
 ---
-# Trabajo Realizado
+## Trabajo Realizado 🔧
 ---
 
 Lo primero que hicimos fue juntarnos y crear en Trello las tablas y las diferentes tareas a realizar. Una vez tuvimos claro el
 proceso a seguir, nos fuimos repartiendo las diferentes tareas.
 
-Foto de Ejemplo
-<img class= "foto" src="./trello.jpg" alt="trello">
+_Foto de Ejemplo_
+<img class="foto" src="./img/trello.jpg" alt="trello">
 
 Una vez acabamos todo el trabajo, repasamos que los controladores y las rutas esten bien. A continuacion, deployamos en Heroku la 
 base de datos, que ya estaba vinculada a Mongo Atlas.
 
 ---
 
-# Deploy en Heroku 
+## Deploy en Heroku 
 ---
 
 [Link del proyecto en heroku](https://proyecto-bucador-peliculas.herokuapp.com/) 🌎
@@ -27,7 +27,7 @@ base de datos, que ya estaba vinculada a Mongo Atlas.
 
 ---
 
-# Instrucciones y endpoints
+## Instrucciones y endpoints
 
 ---
 
@@ -41,7 +41,7 @@ base de datos, que ya estaba vinculada a Mongo Atlas.
 
 ---
 
-<h2>Usuarios</h2>
+<h4>Usuarios</h4>
 
 * "/api/register" para registrarnos como usurarios.
 
@@ -59,7 +59,7 @@ base de datos, que ya estaba vinculada a Mongo Atlas.
 
 ---
 
-<h2>Películas</h2>
+<h4>Películas</h4>
 
 ---
 
@@ -94,7 +94,7 @@ base de datos, que ya estaba vinculada a Mongo Atlas.
 
 ---
 
-<h2>Pedidos</h2>
+<h4>Pedidos</h4>
 
 ---
 
@@ -111,3 +111,25 @@ base de datos, que ya estaba vinculada a Mongo Atlas.
 <br>
 
 * "/api/orders/delete" en este Endpoint, solo los usuarios registrados, pueden eliminar su pedido
+
+---
+
+<h4>Herramientas 🛠️</h4>
+
+---
+
+- JavaScript
+
+- MongoDB
+
+- Heroku
+
+---
+
+<h4>Diseño y Producido ✒️</h4>
+
+---
+
+Iván Bara Lorenzo
+
+Lionel M. Garcia Bustos
